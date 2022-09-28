@@ -9,8 +9,10 @@ import IErrorCodes from './IErrorCodes';
   
   const errors: IErrorCodes = {
     NotFoundError: 404,
-    ConflictError: 409,
     ValidationError: 400,
+    Unauthorized: 401,
+    Created: 201,
+
   }
 
   const status: number = errors[name] || 500;
