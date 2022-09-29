@@ -1,6 +1,7 @@
 import * as express from 'express';
 import 'express-async-errors';
 import errorHandler from './middleware/errorHandler';
+import loginRouter from './routes/login.route';
 
 
 class App {
@@ -25,7 +26,9 @@ class App {
 
     this.app.use(express.json());
     this.app.use(accessControl);
-    // this.app.use('/login');
+    console.log('App');
+    
+    this.app.use('/login', loginRouter);
     this.app.use(errorHandler);
   }
 
