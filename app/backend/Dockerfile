@@ -1,9 +1,9 @@
 FROM node:16.14-alpine
-WORKDIR /app-backend 
-COPY . .
-# RUN apk update && apk add bash
+WORKDIR /app-backend
+COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["npx", "ts-node", "./src/server.ts"]
 EXPOSE 3001
+CMD ["npx", "ts-node", "./src/server.ts"]
+
 

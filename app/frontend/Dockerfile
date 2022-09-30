@@ -1,8 +1,8 @@
 FROM node:16.14-alpine
 WORKDIR /app-frontend
-COPY . .
-# RUN apk update && apk add bash
+COPY package*.json ./
 RUN npm install
 COPY . .
-CMD ["npm", "start"]
 EXPOSE 3000
+CMD ["npm", "start"]
+

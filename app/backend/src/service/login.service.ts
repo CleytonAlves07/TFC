@@ -1,17 +1,10 @@
 import * as bcrypt from 'bcryptjs';
+import IOutput from '../interface/IOutput';
+import IToken from '../interface/IToken';
 import User from '../database/models/user.model';
 import { createToken } from '../helpers/jwt';
 import { ILoginUser, IUserCredentials } from '../interface/IUser';
 import HttpException from './validations/HttpException';
-
-interface IOutput<T> {
-  status: number,
-  data: T,
-}
-
-interface IToken {
-  token: string,
-}
 
 export default class LoginService {
   private chamaPapai = '';

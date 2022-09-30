@@ -1,5 +1,5 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
-import IErrorCodes from './IErrorCodes';
+import IErrorCodes from '../interface/IErrorCodes';
 
 const errorHandler: ErrorRequestHandler = async (
   err: Error,
@@ -14,8 +14,6 @@ const errorHandler: ErrorRequestHandler = async (
     notFoundError: 404,
     validationError: 400,
     unauthorized: 401,
-    created: 201,
-
   };
 
   const status: number = errors[name] || 500;
