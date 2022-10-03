@@ -2,16 +2,24 @@ import * as bcrypt from 'bcryptjs';
 import IOutput from '../interface/IOutput';
 import IToken from '../interface/IToken';
 import User from '../database/models/user.model';
-import { createToken } from '../helpers/jwt';
+import createToken from '../helpers/jwt';
 import { ILoginUser, IUserCredentials } from '../interface/IUser';
 import HttpException from './validations/HttpException';
 
 export default class LoginService {
-  private chamaPapai = '';
-  public async login(setLogin: ILoginUser): Promise<IOutput<IToken>> {
-    console.log('chamaPapai', this.chamaPapai);
+  private static compareLogin(email: string, password: string): void {
+    const compareEmail = !email || email === '';
+    const comparePassword = !password || password === '';
+    if (compareEmail || comparePassword) {
+      throw new HttpException('validationError', 'All fields must be filled');
+    }
+  }
 
+  public static async login(setLogin: ILoginUser): Promise<IOutput<IToken>> {
     const { email, password } = setLogin;
+    console.log('compareLogin:', email, password);
+    
+    LoginService.compareLogin(email, password);
 
     const user = await User.findOne({ where: { email }, raw: true });
     if (user) {
@@ -27,6 +35,8 @@ export default class LoginService {
         };
       }
     }
+    
     throw new HttpException('unauthorized', 'Incorrect email or password');
+
   }
 }

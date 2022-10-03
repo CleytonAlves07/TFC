@@ -3,7 +3,6 @@ import 'express-async-errors';
 import errorHandler from './middleware/errorHandler';
 import loginRouter from './routes/login.route';
 
-
 class App {
   public app: express.Express;
 
@@ -27,7 +26,6 @@ class App {
     this.app.use(express.json());
     this.app.use(accessControl);
     console.log('App');
-    
     this.app.use('/login', loginRouter);
     this.app.use(errorHandler);
   }
