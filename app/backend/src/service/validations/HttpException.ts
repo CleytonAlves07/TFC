@@ -1,7 +1,4 @@
 export default class HttpException extends Error {
-  name: string;
-  message: string;
-
   constructor(name: string, message: string) {
     super();
     this.name = name;
