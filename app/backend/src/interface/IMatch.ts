@@ -4,11 +4,11 @@ export default interface IMatch {
   homeTeamGoals: number,
   awayTeam: number,
   awayTeamGoals: number,
-  inProgress: number,
-  teamHome: {
+  inProgress: boolean,
+  teamHome?: {
     teamName: string,
   },
-  teamAway: {
+  teamAway?: {
     teamName: string,
   }
 }
