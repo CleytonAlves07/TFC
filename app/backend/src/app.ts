@@ -3,6 +3,7 @@ import 'express-async-errors';
 import errorHandler from './middleware/errorHandler';
 import loginRouter from './routes/login.route';
 import teamRouter from './routes/team.route';
+import MatchRouter from './routes/match.route';
 
 class App {
   public app: express.Express;
@@ -30,6 +31,7 @@ class App {
     this.app.use('/login', loginRouter);
     this.app.use('/login/validate', loginRouter);
     this.app.use('/teams', teamRouter);
+    this.app.use('/matches', MatchRouter);
     this.app.use(errorHandler);
   }
 
