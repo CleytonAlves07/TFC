@@ -11,6 +11,10 @@ const errorHandler: ErrorRequestHandler = async (err, _req, res, next) => {
     unauthorized: 401,
   };
 
+  if (name === 'JsonWebTokenError') {
+    res.status(401).json({message:'Token must be a valid token'});
+  }
+
   const status: number = errors[name] || 500;
   res.status(status).json({ message });
 
