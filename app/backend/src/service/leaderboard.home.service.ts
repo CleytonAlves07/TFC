@@ -1,8 +1,10 @@
+import IOutput from '../interface/IOutput';
 import sequelize from '../database/models/index';
+import IResultTeams from '../interface/IResultTeams';
 
 
 export default class LeaderboardHomeService {
-  public static async getHomeTeam(){
+  public static async getHomeTeam(): Promise<IOutput<IResultTeams[]>>{
     const [teams] = await sequelize.query(
       `SELECT
   teams.team_name as name,
@@ -24,7 +26,7 @@ export default class LeaderboardHomeService {
   `);
     return {
       status: 200,
-      data: teams
+      data: teams as IResultTeams[]
     };
   }
 }
